@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/SBuchanan1/team_generator_hw10/issues"
   },
-  "homepage": "https://github.com/SBuchanan1/team_generator_hw10#readme"
+  "homepage": "https://github.com/SBuchanan1/team_generator_hw10#readme",
+  "dependencies": {
+    "inquirer": "^7.3.3"
+  }
 }
