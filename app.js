@@ -72,7 +72,7 @@ function promptCommon(userInput) {
 // object with the correct structure and methods. This structure will be crucial in order
 // for the provided `render` function to work! ```
 
-function getTeamMembers() {
-    inquirer.prompt
-}
-getTeamMembers()
+// function getTeamMembers() {
+//     inquirer.prompt
+// }
+// getTeamMembers()
