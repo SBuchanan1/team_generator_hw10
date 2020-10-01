@@ -10,6 +10,38 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+//Function which prompts user for common information name, id, information and their role
+
+promptCommon();
+function promptCommon(userInput) {
+    inquirer.prompt([
+        {
+        name: "employeeName",
+        type: "input",
+        message: "Please enter employee name",
+    },
+    {
+        name: "employeeId",
+        type: "input ,
+        message: "Please enter employee Id: ",
+    },
+    {
+        name: "employeeEmail",
+        type: "input",
+        message: "Please enter your employee email address: ",
+        
+    },
+    {
+        name: "employeeRole",
+        type: "list",
+        message: "Please select employee role: ",
+        choices: ["Manager", "Engineer","Intern"]
+    },
+    
+
+    }
+}
+
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
@@ -35,7 +67,6 @@ const render = require("./lib/htmlRenderer");
 // for the provided `render` function to work! ```
 
 function getTeamMembers() {
-    console.log("Create your employee!")
     inquirer.prompt
 }
 getTeamMembers()
