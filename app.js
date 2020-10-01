@@ -37,7 +37,13 @@ function promptCommon(userInput) {
         message: "Please select employee role: ",
         choices: ["Manager", "Engineer","Intern"]
     },
-    
+    ]).then(function(res)){
+        specialPrompt(res);
+    }).catch(function(err)){
+        if(err) throw err;
+        console.log("initial prompt answers")
+    })
+}
 
     }
 }
