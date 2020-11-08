@@ -10,112 +10,121 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+// lists the employees
+const employeeList = [];
+
 //Function which prompts user for common information name, id, information and their role
 
-promptCommon();
-function promptCommon(userInput) {
+// promptCommon();
+function init() {
     inquirer.prompt([
         {
-        name: "employeeName",
-        type: "input",
-        message: "Please enter employee name",
-    },
-    {
-        name: "employeeId",
-        type: "input ,
-        message: "Please enter employee Id: ",
-    },
-    {
-        name: "employeeEmail",
-        type: "input",
-        message: "Please enter your employee email address: ",
-        
-    },
-    {
-        name: "employeeRole",
-        type: "list",
-        message: "Please select employee role: ",
-        choices: ["Manager", "Engineer","Intern"]
-    },
-    ]).then(function(res)){
-        specialPrompt(res);
-    }).catch(function(err)){
-        if(err) throw err;
-        console.log("initial prompt answers")
-    })
-}
+            name: "employeeName",
+            type: "input",
+            message: "Please enter employee name",
+        },
+        {
+            name: "employeeId",
+            type: "input",
+            message: "Please enter employee Id: ",
+        },
+        {
+            name: "employeeEmail",
+            type: "input",
+            message: "Please enter your employee email address: ",
 
-    }
-}
-// The above curly brace marks the end of the prompt
+        },
+        {
+            name: "employeeRole",
+            type: "list",
+            message: "Please select employee role: ",
+            choices: ["Manager", "Engineer", "Intern"
 
-// Prompt based on users response
-function specialPrompt(userResponse){
-   if(userResponse.employeeRole === "Manager") {
-       inquirer.prompt {[
-           {
-               name: "officeNumber",
-               type: "input",
-               message: "Please enter office number: ",
-           }
-       ]).then(function(specialResponse) {
-           const manager = new Manager(userResponse.employeeName, userResponse.employeeId, userResponse.employeeEmail, specialResponse.officeNumber);
-           employeeArray.push.(manager);
-           stopPrompt();
-        }).catch(function(err){
-            if(err) throw err
+            ]
+        }.then(function (response) {
+            specialPrompt(response);
+        }).catch(function (response) {
+            if (err) throw err
         })
-   }else if (userResponse.employeeRole === "Engineer") {
-       inquirer.prompt {[
-           {
-               name: "github",
-               type: "input",
-               message: "Please enter your Github username: "
-           }
-       ]).then(function(specialResponse){
-           const engineer = new Engineer(userResponse.employeeName, userResponse.employeeId, userResponse.employeeEmail, specialResponse.github)
-           employeeArray.push(engineer);
-           stopPrompt();
-       }).catch(function(err){
-           if(err) throw err
-       })
-    } else {
-        inquirer.prompt {[
+
+// console.log("initial prompt answers");
+
+
+    // The above curly brace marks the end of the prompt
+
+    // Prompt based on users response
+    function specialPrompt(userResponse) {
+            if (userResponse.employeeRole === "Manager") {
+                inquirer.prompt {
+                    [
+                        {
+                            name: "officeNumber",
+                            type: "input",
+                            message: "Please enter office number: ",
+                        }
+                    ]).then(function (specialResponse) {
+                        const manager = new Manager(userResponse.employeeName, userResponse.employeeId, userResponse.employeeEmail, specialResponse.officeNumber);
+                        employeeArray.push.(manager);
+                        stopPrompt();
+                    }).catch(function (err) {
+                        if (err) throw err
+                    })
+}else if (userResponse.employeeRole === "Engineer") {
+    inquirer.prompt {
+        [
             {
-                name: "school",
+                name: "github",
                 type: "input",
-                message: "Where did the employee attend school?"
+                message: "Please enter your Github username: "
             }
-        ]}.then(function(specialResponse){
+        ]).then(function (specialResponse) {
+            const engineer = new Engineer(userResponse.employeeName, userResponse.employeeId, userResponse.employeeEmail, specialResponse.github)
+            employeeArray.push(engineer);
+            stopPrompt();
+        }).catch(function (err) {
+            if (err) throw err
+        })
+    } else {
+        inquirer.prompt {
+            [
+                {
+                    name: "school",
+                    type: "input",
+                    message: "Where did the employee attend school?"
+                }
+            ]
+        }.then(function (specialResponse) {
             const intern = new Intern(userResponse.employeeName, userResponse.employeeId, userResponse.employeeEmail, specialResponse.github)
             employeeArray.push(Intern);
             stopPrompt();
-         })
+        })
     }
-    
 
-   }
+
 }
+        }
 // Function asking to user if they would like to stop creating employees
 
-function stopPrompt(){
-    inquirer.prompt {[
-        {
-            name: "stop",
-            type: "confirm",
-            message: "Would you like to stop adding employees?"
-        }
-    ]}.then(function(res){
-        if(res.stop){
+function stopPrompt() {
+    inquirer.prompt {
+        [
+            {
+                name: "stop",
+                type: "confirm",
+                message: "Would you like to stop adding employees?"
+            }
+        ]
+    }.then(function (res) {
+        if (res.stop) {
             const currentEmployeeData = render(employeeArray);
-            fs.writeFile(outputPath, currentEmployeeData, function(err){
-                if(err) throw err;
+            fs.writeFile(outputPath, currentEmployeeData, function (err) {
+                if (err) throw err;
             })
         } else {
             promptCommon();
         }
     }
-}
+    }
 
 
 
