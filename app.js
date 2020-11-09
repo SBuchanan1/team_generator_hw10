@@ -13,16 +13,17 @@ const render = require("./lib/htmlRenderer");
 // lists the employees
 const employeeList = [];
 
-//Function which prompts user for common information name, id, information and their role
-
-// promptCommon();
-function init() {
+// Write code to use inquirer to gather information about the development team members,
+// and to create objects for each team member (using the correct classes as blueprints!)
+console.log("Build your engineering team!")
+function specialPrompt() {
     inquirer.prompt([
         {
             name: "employeeName",
             type: "input",
             message: "Please enter employee name",
         },
+
         {
             name: "employeeId",
             type: "input",
@@ -47,15 +48,17 @@ function init() {
             if (err) throw err
         })
 
+
+
 // console.log("initial prompt answers");
 
 
-    // The above curly brace marks the end of the prompt
+// The above curly brace marks the end of the prompt
 
-    // Prompt based on users response
-    function specialPrompt(userResponse) {
+// Prompt based on users response
+function specialPrompt(userResponse) {
             if (userResponse.employeeRole === "Manager") {
-                inquirer.prompt {
+                inquirer.prompt(
                     [
                         {
                             name: "officeNumber",
@@ -69,62 +72,61 @@ function init() {
                     }).catch(function (err) {
                         if (err) throw err
                     })
-}else if (userResponse.employeeRole === "Engineer") {
-    inquirer.prompt {
-        [
-            {
-                name: "github",
-                type: "input",
-                message: "Please enter your Github username: "
+            } else if (userResponse.employeeRole === "Engineer") {
+                inquirer.prompt([
+                    {
+                        name: "github",
+                        type: "input",
+                        message: "Please enter your Github username: "
+                    }
+                ]).then(function (specialResponse) {
+                    const engineer = new Engineer(userResponse.employeeName, userResponse.employeeId, userResponse.employeeEmail, specialResponse.github)
+                    employeeArray.push(engineer);
+                    stopPrompt();
+                }).catch(function (err) {
+                    if (err) throw err
+                })
+            } else {
+                inquirer.prompt(
+                    [
+                        {
+                            name: "school",
+                            type: "input",
+                            message: "Where did the employee attend school?"
+                        }
+                    ]
+                ).then(function (specialResponse) {
+                    const intern = new Intern(userResponse.employeeName, userResponse.employeeId, userResponse.employeeEmail, specialResponse.github)
+                    employeeArray.push(Intern);
+                    stopPrompt();
+                });
             }
-        ]).then(function (specialResponse) {
-            const engineer = new Engineer(userResponse.employeeName, userResponse.employeeId, userResponse.employeeEmail, specialResponse.github)
-            employeeArray.push(engineer);
-            stopPrompt();
-        }).catch(function (err) {
-            if (err) throw err
-        })
-    } else {
-        inquirer.prompt {
-            [
-                {
-                    name: "school",
-                    type: "input",
-                    message: "Where did the employee attend school?"
-                }
-            ]
-        }.then(function (specialResponse) {
-            const intern = new Intern(userResponse.employeeName, userResponse.employeeId, userResponse.employeeEmail, specialResponse.github)
-            employeeArray.push(Intern);
-            stopPrompt();
-        })
-    }
 
 
-}
         }
+
 // Function asking to user if they would like to stop creating employees
 
 function stopPrompt() {
-    inquirer.prompt {
-        [
-            {
-                name: "stop",
-                type: "confirm",
-                message: "Would you like to stop adding employees?"
-            }
-        ]
-    }.then(function (res) {
-        if (res.stop) {
-            const currentEmployeeData = render(employeeArray);
-            fs.writeFile(outputPath, currentEmployeeData, function (err) {
-                if (err) throw err;
+            inquirer.prompt
+            [
+                {
+                    name: "stop",
+                    type: "confirm",
+                    message: "Would you like to stop adding employees?"
+                }
+            ].then(function (res) {
+                if (res.stop) {
+                    const currentEmployeeData = render(employeeArray);
+                    fs.writeFile(outputPath, currentEmployeeData, function (err) {
+                        if (err) throw err;
+                    })
+                } else {
+                    promptCommon();
+                }
             })
-        } else {
-            promptCommon();
         }
-    }
-    }
+
 
 
 
@@ -149,9 +151,4 @@ function stopPrompt() {
 // and Intern classes should all extend from a class named Employee; see the directions
 // for further information. Be sure to test out each class and verify it generates an
 // object with the correct structure and methods. This structure will be crucial in order
-// for the provided `render` function to work! ```
-
-// function getTeamMembers() {
-//     inquirer.prompt
-// }
-// getTeamMembers()
+// for the provided `render` function to work!
