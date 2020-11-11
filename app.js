@@ -36,7 +36,7 @@ function appMenu() {
                 message: "What is your manager's id?",
                 validate: answer => {
                     const pass = answer.match(
-                        /^[1-9]\d*$/
+                        // /^[1-9]\d*$/
                     );
                     if (pass) {
                         return true;
@@ -50,7 +50,7 @@ function appMenu() {
                 message: "What is your manager's email?",
                 validate: answer => {
                     const pass = answer.match(
-                        /\S+@\S+\.\S+/
+                        // /\S+@\S+\.\S+/
                     );
                     if (pass) {
                         return true;
@@ -64,7 +64,7 @@ function appMenu() {
                 message: "What is your manager's office number?",
                 validate: answer => {
                     const pass = answer.match(
-                        /^[1-9]\d*$/
+                        // /^[1-9]\d*$/
                     );
                     if (pass) {
                         return true;
@@ -74,7 +74,7 @@ function appMenu() {
             }
         ]).then(answers => {
             const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber);
-            teamMembers.push(manager);
+            employeeList.push(manager);
             idArray.push(answers.managerId);
             createTeam();
         });
@@ -166,7 +166,7 @@ function appMenu() {
             }
         ]).then(answers => {
             const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub);
-            teamMembers.push(engineer);
+            employeeList.push(engineer);
             idArray.push(answers.engineerId);
             createTeam();
         });
@@ -231,7 +231,7 @@ function appMenu() {
             }
         ]).then(answers => {
             const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool);
-            teamMembers.push(intern);
+            employeeList.push(intern);
             idArray.push(answers.internId);
             createTeam();
         });
@@ -253,9 +253,7 @@ function appMenu() {
 appMenu();
 
 
-// Write code to use inquirer to gather information about the development team members,
-// and to create objects for each team member (using the correct classes as blueprints!)
-console.log("Build your engineering team!")
+
 // function specialPrompt() {
 //     inquirer.prompt([
 //         {
