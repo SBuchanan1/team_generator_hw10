@@ -12,37 +12,37 @@ test("Can set name via constructor arguments", () => {
 });
 
 test("Can set id via constructor argument", () => {
-  const testValue = 100;
-  const peach = new Employee("Morty", testValue);
-  expect(peach.id).toBe(testValue);
+  const testerVal = 100;
+  const peach = new Employee("Morty", testerVal);
+  expect(peach.id).toBe(testerVal);
 });
 
 test("Can set email via constructor argument", () => {
-  const testValue = "test@test.com";
-  const peach = new Employee("Morty", 1, testValue);
-  expect(peach.email).toBe(testValue);
+  const testerVal = "test@test.com";
+  const peach = new Employee("Morty", 1, testerVal);
+  expect(peach.email).toBe(testerVal);
 });
 
 test("Can get name via getName()", () => {
-  const testValue = "Rick";
-  const peach = new Employee(testValue);
-  expect(peach.getName()).toBe(testValue);
+  const testerVal = "Rick";
+  const peach = new Employee(testerVal);
+  expect(peach.getName()).toBe(testerVal);
 });
 
 test("Can get id via getId()", () => {
-  const testValue = 100;
-  const peach = new Employee("Morty", testValue);
-  expect(peach.getId()).toBe(testValue);
+  const testerVal = 100;
+  const peach = new Employee("Morty", testerVal);
+  expect(peach.getId()).toBe(testerVal);
 });
 
 test("Can get email via getEmail()", () => {
-  const testValue = "test@test.com";
-  const peach = new Employee("Morty", 1, testValue);
-  expect(peach.getEmail()).toBe(testValue);
+  const testerVal = "test@test.com";
+  const peach = new Employee("Morty", 1, testerVal);
+  expect(peach.getEmail()).toBe(testerVal);
 });
 
 test("getRole() should return \"Employee\"", () => {
-  const testValue = "Employee";
+  const testerVal = "Employee";
   const peach = new Employee("Rick", 1, "test@test.com");
-  expect(peach.getRole()).toBe(testValue);
+  expect(peach.getRole()).toBe(testerVal);
 });
