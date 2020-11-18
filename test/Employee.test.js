@@ -1,48 +1,48 @@
 const Employee = require("../lib/Employee");
 
 test("Can instantiate Employee instance", () => {
-  const peach = new Employee();
-  expect(typeof (peach)).toBe("object");
+  const e = new Employee();
+  expect(typeof (e)).toBe("object");
 });
 
 test("Can set name via constructor arguments", () => {
   const name = "Rick";
-  const peach = new Employee(name);
-  expect(peach.name).toBe(name);
+  const e = new Employee(name);
+  expect(e.name).toBe(name);
 });
 
 test("Can set id via constructor argument", () => {
   const testerVal = 100;
-  const peach = new Employee("Morty", testerVal);
-  expect(peach.id).toBe(testerVal);
+  const e = new Employee("Morty", testerVal);
+  expect(e.id).toBe(testerVal);
 });
 
 test("Can set email via constructor argument", () => {
   const testerVal = "test@test.com";
-  const peach = new Employee("Morty", 1, testerVal);
-  expect(peach.email).toBe(testerVal);
+  const e = new Employee("Morty", 1, testerVal);
+  expect(e.email).toBe(testerVal);
 });
 
 test("Can get name via getName()", () => {
   const testerVal = "Rick";
-  const peach = new Employee(testerVal);
-  expect(peach.getName()).toBe(testerVal);
+  const e = new Employee(testerVal);
+  expect(e.getName()).toBe(testerVal);
 });
 
 test("Can get id via getId()", () => {
   const testerVal = 100;
-  const peach = new Employee("Morty", testerVal);
-  expect(peach.getId()).toBe(testerVal);
+  const e = new Employee("Morty", testerVal);
+  expect(e.getId()).toBe(testerVal);
 });
 
 test("Can get email via getEmail()", () => {
   const testerVal = "test@test.com";
-  const peach = new Employee("Morty", 1, testerVal);
-  expect(peach.getEmail()).toBe(testerVal);
+  const e = new Employee("Morty", 1, testerVal);
+  expect(e.getEmail()).toBe(testerVal);
 });
 
 test("getRole() should return \"Employee\"", () => {
   const testerVal = "Employee";
-  const peach = new Employee("Rick", 1, "test@test.com");
-  expect(peach.getRole()).toBe(testerVal);
+  const e = new Employee("Rick", 1, "test@test.com");
+  expect(e.getRole()).toBe(testerVal);
 });
